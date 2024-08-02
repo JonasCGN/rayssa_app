@@ -41,7 +41,7 @@ app.post('/produtos', async (req, res) => {
     }
 });
 
-// Rota para recuperar todos os nós Person
+// Rota para recuperar todos os nós Produtos
 app.get('/produtos', async (req, res) => {
     try {
         const result = await session.run('MATCH (n:Produto) RETURN n');
@@ -58,7 +58,7 @@ app.get('/produtos', async (req, res) => {
     }
 });
 
-// Rota para recuperar um nó Person específico
+// Rota para remover um nó Produto específico
 app.delete('/produtos/:id', async (req, res) => {
     const id = req.params.id;
 
@@ -70,7 +70,7 @@ app.delete('/produtos/:id', async (req, res) => {
         res.status(500).send('Error deleting product');
     }
 });
-
+// Rota para editar um nó Produto específico
 app.patch('/produtos/:id', async (req, res) => {
     const id = req.params.id;
     const body = req.body;
