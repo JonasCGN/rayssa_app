@@ -1,0 +1,27 @@
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
+    environment:
+      - NEO4J_AUTH=neo4j/password
+    networks:
+      - project-network
+
+
+  app:
+    image: rayssa7/my_node_app:latest
+    container_name: my_node_app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - neo4j
+    environment:
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_USER=neo4j
+      - NEO4J_PASSWORD=password
+    networks:
+      - project-network
+  
+networks:
+  project-network:
+    driver: overlay
