@@ -6,6 +6,13 @@ services:
       - NEO4J_AUTH=neo4j/password
     networks:
       - project-network
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      placement:
+        preferences:
+          - spread: node.hostname
 
 
   app:
@@ -21,6 +28,13 @@ services:
       - NEO4J_PASSWORD=password
     networks:
       - project-network
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      placement:
+        preferences:
+          - spread: node.hostname
   
 networks:
   project-network:
