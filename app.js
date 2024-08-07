@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
 
-    res.send('Hello World!');
+    res.send('Hello World! ' + res);
 });
 
 // Rota para adicionar um novo nó
@@ -54,7 +54,7 @@ app.get('/produtos', async (req, res) => {
         });
         res.json(people);
     } catch (error) {
-        res.status(500).send('Error retrieving product');
+        res.status(500).send('Error retrieving product ' + error);
     }
 });
 
